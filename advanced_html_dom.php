@@ -768,14 +768,17 @@ class CSS{
   }
 
   function match($regex, $group_number = 0){
-    if(!preg_match($regex, $this->text, $m)) return false;
+    if(!preg_match($regex, $this->text, $m) or !isset($m[$group_number])) return false;
     $val = $m[$group_number];
     return $val; // new Str($val);
   }
 
   function scan($regex, $group_number = 0){
-    preg_match_all($regex , $this->text, $m);
-    return $m[$group_number];
+    if (preg_match_all($regex , $this->text, $m) and isset($m[$group_number])) {
+       return $m[$group_number];
+    } else {
+       return false;
+    }
   }
 
   function gsub($regex, $replacement, $limit = -1){
