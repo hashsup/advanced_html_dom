@@ -494,7 +494,7 @@ class AHTMLNode extends AdvancedHtmlBase implements ArrayAccess{
 
 class CSS{
   private static function is_xpath($str){
-    return preg_match('/^\(?\.?\//', $str);
+    return preg_match('/^(?:string)?\(?\.?\//', $str);
   }
 
   static function do_id($str){
